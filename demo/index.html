@@ -4,19 +4,35 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <title>demo</title>
-    <meta name="description" content="demo description">
+    <title>dom-di demo</title>
 
-    <!-- See https://goo.gl/OOhYW5 -->
-    <link rel="manifest" href="/manifest.json">
+    <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="../src/diContainer.js"></script>
 
-    <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../src/Controls/Container.html">
+    <link rel="import" href="../test/mixin/Controls/ConsumerSimple.html">
+    <link rel="import" href="../test/mixin/Controls/ObjectSimple.html">
+    <link rel="import" href="../test/mixin/Controls/ProviderSimple.html">
 
-    <script type="module" src="/src/demo-app/dom-di.js"></script>
-    <script type="module" src="/src/demo-app/ella.js"></script>
-    <script type="module" src="/src/demo-app/demo-app.js"></script>
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+      </style>
+    </custom-style>
   </head>
   <body>
-    <demo-app></demo-app>
+    <div class="vertical-section-container centered">
+      <h3>Basic dom-di demo</h3>
+      <demo-snippet>
+        <template>
+          <dom-di-container>
+            <dom-di-test-provider-simple></dom-di-test-provider-simple>
+            <dom-di-test-object-simple></dom-di-test-object-simple>
+            <dom-di-test-consumer-simple></dom-di-test-consumer-simple>
+          </dom-di-container>
+        </template>
+      </demo-snippet>
+    </div>
   </body>
 </html>

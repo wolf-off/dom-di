@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+  <title>dom-di test</title>
+
+  <script src="../../../webcomponentsjs/webcomponents-loader.js"></script>
+  <script src="../../../web-component-tester/browser.js"></script>
+
+  <script src="../../src/diContainer.js"></script>
+  <link rel="import" href="../../src/diContainerMixin.html">
+  <link rel="import" href="../../src/diObjectMixin.html">
+  <link rel="import" href="../../src/Controls/Container.html">
+</head>
+
+<body>
+
+  <test-fixture id="BasicFixture">
+    <template>
+      <dom-di-container></dom-di-container>
+    </template>
+  </test-fixture>
+
+  <script>
+    suite('Basic', function () {
+
+      let container;
+
+      setup(function (done) {
+        container = fixture('BasicFixture');
+        animationFrameFlush(done);
+      });
+
+      teardown(function () {
+        container = undefined;
+      });
+
+      test('mixin runs', function () {
+        assert.equal(container != null, true);
+      });
+
+      test('register request', function () {
+        var config = new diRequestParameters();
+        config.requirements.push('testType');
+        config.onReady = () => { };
+        var request = new diRequest(config);
+
+        let event = new CustomEvent('dom-di-request', {
+          detail: {
+            request: request
+          },
+          bubbles: true,
+          cancelable: true,
+          composed: true
+        });
+        container.dispatchEvent(event);
+        assert.equal(container.container != null, true);
+        assert.equal(container.container.requests.length, 1);
+        assert.equal(container.container.requests[0].requirements.length, 1);
+        assert.equal(container.container.requests[0].requirements[0], 'testType');
+      });
+
+      test('register instance', function () {
+        let event = new CustomEvent('dom-di-instance', {
+          detail: {
+            type: 'testType',
+            instance: {}
+          },
+          bubbles: true,
+          cancelable: true,
+          composed: true
+        });
+        container.dispatchEvent(event);
+        assert.equal(container.container != null, true);
+        assert.equal(container.container.instances['testType'] != null, true);
+      });
+
+      test('simple resolve', function () {
+        var instance = null;
+        var config = new diRequestParameters();
+        config.requirements.push('testType');
+        config.onReady = (pInstance) => { instance = pInstance; };
+        var request = new diRequest(config);
+
+        let event = new CustomEvent('dom-di-request', {
+          detail: {
+            request: request
+          },
+          bubbles: true,
+          cancelable: true,
+          composed: true
+        });
+
+        container.dispatchEvent(event);
+
+        event = new CustomEvent('dom-di-instance', {
+          detail: {
+            type: 'testType',
+            instance: 'testInstance'
+          },
+          bubbles: true,
+          cancelable: true,
+          composed: true
+        });
+        container.dispatchEvent(event);
+
+        assert.equal(instance, 'testInstance');
+      });
+    });
+  </script>
+
+</body>
+
+</html>

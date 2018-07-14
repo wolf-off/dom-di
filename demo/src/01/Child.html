@@ -1,0 +1,46 @@
+<dom-module id="child-control">
+  <template>
+    <style>
+      :host {
+        display: block;
+        border: solid black 1px;
+        background: aquamarine;
+        margin: 5px;
+      }
+    </style>
+    <div>
+      <div>
+        Child control
+      </div>
+      <div>
+        <button onclick="{{onClick}}">Send Hello</button>
+      </div>
+      <slot></slot>
+    </div>
+  </template>
+
+  <script>
+    class ChildControl extends Polymer.Element {
+      static get is() { return 'child-control'; }
+      static get properties() {
+        return {
+          message: {
+            type: String,
+            value: ""
+          }
+        };
+      }
+
+      onClick() {
+        const event = new CustomEvent('child-message', {
+          detail: { message: "Hello" },
+          bubbles: true,
+          cancelable: true,
+          composed: true
+        });
+        this.dispatchEvent(event);
+      }
+    }
+    window.customElements.define(ChildControl.is, ChildControl);
+  </script>
+</dom-module>

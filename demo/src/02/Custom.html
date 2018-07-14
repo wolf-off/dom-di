@@ -1,0 +1,44 @@
+<dom-module id="custom-control">
+  <template>
+    <style>
+      :host {
+        display: block;
+        background: azure;
+        border: solid 1px black;
+      }
+    </style>
+    <div>
+      <div>
+        Custom control
+      </div>
+      <div>Message:{{message}}</div>
+      <slot></slot>
+    </div>
+  </template>
+
+  <script>
+    class CustomControl extends Polymer.Element {
+      static get is() { return 'custom-control'; }
+      static get properties() {
+        return {
+          message: {
+            type: String,
+            value: ""
+          }
+        };
+      }
+
+      ready() {
+        super.ready();
+        const that = this;
+        this.addEventListener('service-instance', (event) => {
+          that.instance = event.detail.instance;
+          event.preventDefault();
+          event.stopPropagation();
+          that.message = that.instance.sayHello();
+        });
+      }
+    }
+    window.customElements.define(CustomControl.is, CustomControl);
+  </script>
+</dom-module>

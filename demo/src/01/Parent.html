@@ -1,0 +1,43 @@
+<dom-module id="parent-control">
+  <template>
+    <style>
+      :host {
+        display: block;
+        background: azure;
+        border: solid 1px black;
+      }
+    </style>
+    <div>
+      <div>
+        Parent control
+      </div>
+      <div>Message:{{message}}</div>
+      <slot></slot>
+    </div>
+  </template>
+
+  <script>
+    class ParentControl extends Polymer.Element {
+      static get is() { return 'parent-control'; }
+      static get properties() {
+        return {
+          message: {
+            type: String,
+            value: ""
+          }
+        };
+      }
+
+      ready() {
+        super.ready();
+        const that = this;
+        this.addEventListener('child-message', (event) => {
+          that.message = event.detail.message;
+          event.preventDefault();
+          event.stopPropagation();
+        });
+      }
+    }
+    window.customElements.define(ParentControl.is, ParentControl);
+  </script>
+</dom-module>

@@ -1,0 +1,72 @@
+<dom-module id="custom-control">
+  <template>
+    <style>
+      :host {
+        display: block;
+        border: solid black 1px;
+        background: aquamarine;
+        margin: 5px;
+      }
+    </style>
+    <div>
+      <div>
+        Custom control
+      </div>
+      <div>MessageA:{{messageA}}</div>
+      <div>MessageB:{{messageB}}</div>
+      <div>MessageC:{{messageC}}</div>
+      <div>
+        <button onclick="{{onClick}}">Send request for service</button>
+      </div>
+      <slot></slot>
+    </div>
+  </template>
+
+  <script>
+    class CustomControl extends Polymer.Element {
+      static get is() { return 'custom-control'; }
+      static get properties() {
+        return {
+          messageA: {
+            type: String,
+            value: ""
+          },
+          messageB: {
+            type: String,
+            value: ""
+          },
+          messageC: {
+            type: String,
+            value: ""
+          }
+        };
+      }
+
+      onClick() {
+        const eventA = new CustomEvent('service-a-instance-request', {
+          detail: { callback: (instance) => { this.getRootNode().host.messageA = instance.sayHello(); } },
+          bubbles: true,
+          cancelable: true,
+          composed: true
+        });
+        this.dispatchEvent(eventA);
+        const eventB = new CustomEvent('service-b-instance-request', {
+          detail: { callback: (instance) => { this.getRootNode().host.messageB = instance.sayHello(); } },
+          bubbles: true,
+          cancelable: true,
+          composed: true
+        });
+        this.dispatchEvent(eventB);
+        const eventC = new CustomEvent('service-c-instance-request', {
+          detail: { callback: (instance) => { this.getRootNode().host.messageC = instance.sayHello(); } },
+          bubbles: true,
+          cancelable: true,
+          composed: true
+        });
+        this.dispatchEvent(eventC);
+      }
+
+    }
+    window.customElements.define(CustomControl.is, CustomControl);
+  </script>
+</dom-module>

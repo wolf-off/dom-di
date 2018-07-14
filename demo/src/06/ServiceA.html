@@ -1,0 +1,47 @@
+<dom-module id="service-a-control">
+  <template>
+    <style>
+      :host {
+        display: block;
+        background: azure;
+        border: solid 1px black;
+        margin: 5px;
+      }
+    </style>
+    <div>
+      <div>
+        Service A control
+      </div>
+      <div>
+        <button onclick="{{onClick}}">Send self</button>
+      </div>
+      <slot></slot>
+    </div>
+  </template>
+
+  <script>
+    class ServiceAControl extends Polymer.Element {
+      static get is() { return 'service-a-control'; }
+      static get properties() {
+        return {
+        };
+      }
+
+      onClick() {
+        const event = new CustomEvent('service-a-instance', {
+          detail: { instance: this.getRootNode().host },
+          bubbles: true,
+          cancelable: true,
+          composed: true
+        });
+        this.dispatchEvent(event);
+      }
+
+      sayHello() {
+        return 'Hello from A';
+      }
+
+    }
+    window.customElements.define(ServiceAControl.is, ServiceAControl);
+  </script>
+</dom-module>

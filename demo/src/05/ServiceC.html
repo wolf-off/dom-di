@@ -1,0 +1,44 @@
+<dom-module id="service-c-control">
+  <template>
+    <style>
+      :host {
+        display: block;
+        background: azure;
+        border: solid 1px black;
+        margin: 5px;
+      }
+    </style>
+    <div>
+      <div>
+        Service C control
+      </div>
+      <slot></slot>
+    </div>
+  </template>
+
+  <script>
+    class ServiceCControl extends Polymer.Element {
+      static get is() { return 'service-c-control'; }
+      static get properties() {
+        return {
+        };
+      }
+
+      ready() {
+        super.ready();
+        const that = this;
+        this.addEventListener('service-c-instance-request', (event) => {
+          event.detail.callback(that);
+          event.preventDefault();
+          event.stopPropagation();
+        });
+      }
+
+      sayHello() {
+        return 'Hello from C';
+      }
+
+    }
+    window.customElements.define(ServiceCControl.is, ServiceCControl);
+  </script>
+</dom-module>

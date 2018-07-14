@@ -1,0 +1,78 @@
+<dom-module id="container-control">
+  <template>
+    <style>
+      :host {
+        display: block;
+        border: solid black 1px;
+        background: white;
+        margin: 5px;
+      }
+    </style>
+    <div>
+      <div>
+        Container control
+      </div>
+      <div>Instance A: {{instanceA}}</div>
+      <div>Instance B: {{instanceB}}</div>
+      <div>Instance C: {{instanceC}}</div>
+      <slot></slot>
+    </div>
+  </template>
+
+  <script>
+    class ContainerControl extends Polymer.Element {
+      static get is() { return 'container-control'; }
+      static get properties() {
+        return {
+          instanceA: {
+            type: Object,
+            value: null
+          },
+          instanceB: {
+            type: Object,
+            value: null
+          },
+          instanceC: {
+            type: Object,
+            value: null
+          }
+        };
+      }
+
+      ready() {
+        super.ready();
+        this.addEventListener('service-a-instance', (event) => {
+          this.instanceA = event.detail.instance;
+          event.preventDefault();
+          event.stopPropagation();
+        });
+        this.addEventListener('service-b-instance', (event) => {
+          this.instanceB = event.detail.instance;
+          event.preventDefault();
+          event.stopPropagation();
+        });
+        this.addEventListener('service-c-instance', (event) => {
+          this.instanceC = event.detail.instance;
+          event.preventDefault();
+          event.stopPropagation();
+        });
+        this.addEventListener('service-a-instance-request', (event) => {
+          event.detail.callback(this.instanceA);
+          event.preventDefault();
+          event.stopPropagation();
+        });
+        this.addEventListener('service-b-instance-request', (event) => {
+          event.detail.callback(this.instanceB);
+          event.preventDefault();
+          event.stopPropagation();
+        });
+        this.addEventListener('service-c-instance-request', (event) => {
+          event.detail.callback(this.instanceC);
+          event.preventDefault();
+          event.stopPropagation();
+        });
+      }
+    }
+    window.customElements.define(ContainerControl.is, ContainerControl);
+  </script>
+</dom-module>

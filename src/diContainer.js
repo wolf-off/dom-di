@@ -54,17 +54,7 @@ diContainer.prototype.registerInstance = function (type, instance) {
         }
     });
     this.requests.forEach(request => {
-        const result = [];
-        let isReady = true;
-        request.requirements.forEach(req => {
-            result.push(this.instances[req]);
-            isReady = isReady && this.instances[req];
-        });
-        if (isReady) {
-            if (request.onReady) {
-                request.onReady(...result);
-            }
-        }
+        this.checkRequest(request);
     });
     this.childContainers.forEach(childContainer => {
         childContainer.registerInstance(type, instance);
@@ -72,4 +62,21 @@ diContainer.prototype.registerInstance = function (type, instance) {
 }
 diContainer.prototype.addRequest = function (request) {
     this.requests.push(request);
+    this.checkRequest(request);
 }
+diContainer.prototype.checkRequest = function (request) {
+    const result = [];
+    let isReady = true;
+    request.requirements.forEach(req => {
+        result.push(this.instances[req]);
+        isReady = isReady && this.instances[req];
+    });
+    if (isReady) {
+        var index = this.requests.indexOf(request);
+        this.requests.splice(index, 1);
+        if (request.onReady) {
+            request.onReady(...result);
+        }
+    }
+}
+

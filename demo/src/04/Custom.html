@@ -1,0 +1,48 @@
+<dom-module id="custom-control">
+  <template>
+    <style>
+      :host {
+        display: block;
+        border: solid black 1px;
+        background: aquamarine;
+        margin: 5px;
+      }
+    </style>
+    <div>
+      <div>
+        Custom control
+      </div>
+      <div>Message:{{message}}</div>
+      <div>
+        <button onclick="{{onClick}}">Send request for service</button>
+      </div>
+      <slot></slot>
+    </div>
+  </template>
+
+  <script>
+    class CustomControl extends Polymer.Element {
+      static get is() { return 'custom-control'; }
+      static get properties() {
+        return {
+          message: {
+            type: String,
+            value: ""
+          }
+        };
+      }
+
+      onClick() {
+        const event = new CustomEvent('service-instance-request', {
+          detail: { callback: (instance) => { this.getRootNode().host.message = instance.sayHello(); } },
+          bubbles: true,
+          cancelable: true,
+          composed: true
+        });
+        this.dispatchEvent(event);
+      }
+
+    }
+    window.customElements.define(CustomControl.is, CustomControl);
+  </script>
+</dom-module>

@@ -1,0 +1,43 @@
+<dom-module id="service-control">
+  <template>
+    <style>
+      :host {
+        display: block;
+        background: azure;
+        border: solid 1px black;
+      }
+    </style>
+    <div>
+      <div>
+        Service control
+      </div>
+      <slot></slot>
+    </div>
+  </template>
+
+  <script>
+    class ServiceControl extends Polymer.Element {
+      static get is() { return 'service-control'; }
+      static get properties() {
+        return {
+        };
+      }
+
+      ready() {
+        super.ready();
+        const that = this;
+        this.addEventListener('service-instance-request', (event) => {
+          event.detail.callback(that);
+          event.preventDefault();
+          event.stopPropagation();
+        });
+      }
+
+      sayHello() {
+        return 'Hello';
+      }
+
+    }
+    window.customElements.define(ServiceControl.is, ServiceControl);
+  </script>
+</dom-module>
