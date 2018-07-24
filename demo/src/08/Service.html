@@ -1,0 +1,34 @@
+<dom-module id="service-control">
+  <template>
+    <style>
+      :host {
+        display: block;
+        background: azure;
+        border: solid 1px black;
+        margin: 5px;
+      }
+    </style>
+    <div>
+      <div>
+        Service A control
+      </div>
+      <div>
+        <button onclick="{{onClick}}">Send self</button>
+      </div>
+      <slot></slot>
+    </div>
+  </template>
+
+  <script>
+    class ServiceControl extends diObjectMixin(Polymer.Element) {
+      static get is() { return 'service-control'; }
+      static get properties() {
+        return { firstName: { type: String, value: "" } };
+      }
+      sayHello() {
+        return this.firstName + ', hello from service.';
+      }
+    }
+    window.customElements.define(ServiceControl.is, ServiceControl);
+  </script>
+</dom-module>
