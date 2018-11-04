@@ -26,6 +26,19 @@
     <style is="custom-style" include="demo-pages-shared-styles">
     </style>
   </custom-style>
+  <style>
+    .app {
+      border: gray solid 1px;
+      margin: 2px;
+    }
+
+    .app>div:nth-child(1) {
+      color: gray;
+      text-align: right;
+      font-size: 12px;
+      margin-right: 10px;
+    }
+  </style>
 </head>
 
 <body>
@@ -42,9 +55,15 @@
   <container-control>
     <service-a-control></service-a-control>
     <!-- service-b-control-->
-    <app-root></app-root>
+    <div class="app">
+      <div>Angular 7</div>
+      <app-root></app-root>
+    </div>
     <!-- service-c-control -->
-    <div id="root"></div>
+    <div class="app">
+      <div>React</div>
+      <div id="root"></div>
+    </div>
     <service-d-control></service-d-control>
     <service-e-control></service-e-control>
     <consumer-control></consumer-control>
