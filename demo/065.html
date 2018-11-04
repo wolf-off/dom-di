@@ -18,6 +18,8 @@
   <link rel="import" href="demo/src/065/ServiceA.html">
   <link rel="import" href="demo/src/065/ServiceB.html">
   <link rel="import" href="demo/src/065/ServiceC.html">
+  <link rel="import" href="demo/src/065/ServiceD.html">
+  <link rel="import" href="demo/src/065/ServiceE.html">
 
 
   <custom-style>
@@ -30,11 +32,21 @@
 
   <h3>Basic dom-di demo</h3>
 
+  <!--react loads-->
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
+  <script type="text/babel" src="src/diObjectMixinBabel.js"></script>
+  <script type="text/babel" src="demo/src/065/react/app.js"></script>
+
   <container-control>
     <service-a-control></service-a-control>
     <!-- service-b-control-->
     <app-root></app-root>
-    <service-c-control></service-c-control>
+    <!-- service-c-control -->
+    <div id="root"></div>
+    <service-d-control></service-d-control>
+    <service-e-control></service-e-control>
     <consumer-control></consumer-control>
   </container-control>
 
@@ -44,6 +56,8 @@
   <script type="text/javascript" src="demo/src/065/angular7/dist/styles.js"></script>
   <script type="text/javascript" src="demo/src/065/angular7/dist/vendor.js"></script>
   <script type="text/javascript" src="demo/src/065/angular7/dist/main.js"></script>
+
+
 
 </body>
 

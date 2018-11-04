@@ -1,0 +1,36 @@
+<script>
+  class ServiceDControl extends diObjectMixin(HTMLElement) {
+    constructor() {
+      super();
+
+      this.typeName = 'service-d';
+      this.dependencies = ['service-c'];
+      this.diReady = (serviceC) => {
+        this.serviceC = serviceC;
+        return this;
+      }
+
+      var root = this.attachShadow({ mode: 'open' })
+      root.innerHTML = `
+      <style>
+        :host {
+          display: block;
+          border: solid black 1px;
+          background: aquamarine;
+          margin: 5px;
+        }
+      </style>
+      <div>
+        <div>
+          Service D control
+        </div>
+        <slot></slot>
+      </div>`;
+    }
+
+    sayHello() {
+      return 'D knows that C sais: ' + this.serviceC.sayHello();
+    }
+  }
+  window.customElements.define('service-d-control', ServiceDControl);
+</script>
