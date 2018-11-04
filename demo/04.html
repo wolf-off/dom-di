@@ -7,13 +7,10 @@
 
   <title>dom-di demo</title>
 
-  <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
   <script src="../src/diContainer.js"></script>
 
-  <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
-  <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
   <link rel="import" href="../src/Controls/Container.html">
-  <link rel="import" href="./src/04/Custom.html">
+  <link rel="import" href="./src/04/Consumer.html">
   <link rel="import" href="./src/04/Service.html">
 
   <custom-style>
@@ -23,18 +20,15 @@
 </head>
 
 <body>
-  <div class="vertical-section-container centered">
-    <h3>Basic dom-di demo</h3>
-    <demo-snippet>
-      <template>
-        <service-control>
-            <custom-control></custom-control>
-            <custom-control></custom-control>
-            <custom-control></custom-control>
-          </service-control>
-      </template>
-    </demo-snippet>
-  </div>
+
+  <h3>Basic dom-di demo</h3>
+
+  <service-control>
+    <consumer-control></consumer-control>
+    <consumer-control></consumer-control>
+    <consumer-control></consumer-control>
+  </service-control>
+
 </body>
 
 </html>

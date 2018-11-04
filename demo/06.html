@@ -7,14 +7,8 @@
 
   <title>dom-di demo</title>
 
-  <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
-  <script src="../src/diContainer.js"></script>
-
-  <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
-  <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
-  <link rel="import" href="../src/Controls/Container.html">
   <link rel="import" href="./src/06/Container.html">
-  <link rel="import" href="./src/06/Custom.html">
+  <link rel="import" href="./src/06/Consumer.html">
   <link rel="import" href="./src/06/ServiceA.html">
   <link rel="import" href="./src/06/ServiceB.html">
   <link rel="import" href="./src/06/ServiceC.html">
@@ -26,21 +20,18 @@
 </head>
 
 <body>
-  <div class="vertical-section-container centered">
-    <h3>Basic dom-di demo</h3>
-    <demo-snippet>
-      <template>
-        <container-control>
-          <service-a-control></service-a-control>
-          <service-b-control></service-b-control>
-          <service-c-control></service-c-control>
-          <custom-control></custom-control>
-          <custom-control></custom-control>
-          <custom-control></custom-control>
-        </container-control>
-      </template>
-    </demo-snippet>
-  </div>
+
+  <h3>Basic dom-di demo</h3>
+
+  <container-control>
+    <service-a-control></service-a-control>
+    <service-b-control></service-b-control>
+    <service-c-control></service-c-control>
+    <consumer-control></consumer-control>
+    <consumer-control></consumer-control>
+    <consumer-control></consumer-control>
+  </container-control>
+
 </body>
 
 </html>

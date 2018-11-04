@@ -1,44 +1,33 @@
-<dom-module id="service-c-control">
-  <template>
-    <style>
-      :host {
-        display: block;
-        background: azure;
-        border: solid 1px black;
-        margin: 5px;
-      }
-    </style>
-    <div>
+<script>
+  class ServiceCControl extends HTMLElement {
+    constructor() {
+      super();
+      var root = this.attachShadow({ mode: 'open' })
+      root.innerHTML = `
+      <style>
+        :host {
+          display: block;
+          border: solid black 1px;
+          background: aquamarine;
+          margin: 5px;
+        }
+      </style>
       <div>
-        Service C control
-      </div>
-      <slot></slot>
-    </div>
-  </template>
-
-  <script>
-    class ServiceCControl extends Polymer.Element {
-      static get is() { return 'service-c-control'; }
-      static get properties() {
-        return {
-        };
-      }
-
-      ready() {
-        super.ready();
-        const that = this;
-        this.addEventListener('service-c-instance-request', (event) => {
-          event.detail.callback(that);
-          event.preventDefault();
-          event.stopPropagation();
-        });
-      }
-
-      sayHello() {
-        return 'Hello from C';
-      }
-
+        <div>
+          Service C control
+        </div>
+        <slot></slot>
+      </div>`;
+      this.addEventListener('service-c-instance-request', (event) => {
+        event.detail.callback(this);
+        event.preventDefault();
+        event.stopPropagation();
+      });
     }
-    window.customElements.define(ServiceCControl.is, ServiceCControl);
-  </script>
-</dom-module>
+
+    sayHello() {
+      return 'Hello from C';
+    }
+  }
+  window.customElements.define('service-c-control', ServiceCControl);
+</script>

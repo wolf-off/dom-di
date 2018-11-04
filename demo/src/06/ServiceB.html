@@ -1,47 +1,38 @@
-<dom-module id="service-b-control">
-  <template>
-    <style>
-      :host {
-        display: block;
-        background: azure;
-        border: solid 1px black;
-        margin: 5px;
-      }
-    </style>
-    <div>
+<script>
+  class ServiceBControl extends HTMLElement {
+    constructor() {
+      super();
+      var root = this.attachShadow({ mode: 'open' })
+      root.innerHTML = `
+      <style>
+        :host {
+          display: block;
+          border: solid black 1px;
+          background: aquamarine;
+          margin: 5px;
+        }
+      </style>
       <div>
-        Service B control
-      </div>
-      <div>
-        <button onclick="{{onClick}}">Send self</button>
-      </div>
-      <slot></slot>
-    </div>
-  </template>
-
-  <script>
-    class ServiceBControl extends Polymer.Element {
-      static get is() { return 'service-b-control'; }
-      static get properties() {
-        return {
-        };
-      }
-
-      onClick() {
-        const event = new CustomEvent('service-b-instance', {
-          detail: { instance: this.getRootNode().host },
+        <div>
+          Service B control
+        </div>
+        <button id='send'>Send self</button>
+        <slot></slot>
+      </div>`;
+      root.getElementById('send').onclick = function () {
+          const event = new CustomEvent('service-b-instance', {
+          detail: { instance: this },
           bubbles: true,
           cancelable: true,
           composed: true
         });
         this.dispatchEvent(event);
-      }
-
-      sayHello() {
-        return 'Hello from B';
-      }
-
+      };
     }
-    window.customElements.define(ServiceBControl.is, ServiceBControl);
-  </script>
-</dom-module>
+
+    sayHello() {
+      return 'Hello from B';
+    }
+  }
+  window.customElements.define('service-b-control', ServiceBControl);
+</script>

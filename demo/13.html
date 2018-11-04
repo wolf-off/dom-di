@@ -7,11 +7,8 @@
 
   <title>dom-di demo</title>
 
-  <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
   <script src="../src/diContainer.js"></script>
 
-  <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
-  <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
   <link rel="import" href="../src/Controls/Container.html">
   <link rel="import" href="./src/06/Container.html">
   <link rel="import" href="./src/06/Custom.html">
@@ -26,25 +23,22 @@
 </head>
 
 <body>
-  <div class="vertical-section-container centered">
-    <h3>Basic dom-di demo</h3>
-    <demo-snippet>
-      <template>
-        <dom-di-container>
-          <service-a-control></service-a-control>
-          <custom-a-control></custom-a-control>
-          <dom-di-property name='FirstNameProperty' value='Alex' />
-          <control-with-internal-container>
-            <dom-di-container>
-              <service-b-control></service-b-control>
-              <custom-b-control></custom-b-control>
-              <dom-di-property name='FirstNameProperty' value='defaultName' lowPriority/>
-            </dom-di-container>
-          </control-with-internal-container>
-        </dom-di-container>
-      </template>
-    </demo-snippet>
-  </div>
+
+  <h3>Basic dom-di demo</h3>
+
+  <dom-di-container>
+    <service-a-control></service-a-control>
+    <custom-a-control></custom-a-control>
+    <dom-di-property name='FirstNameProperty' value='Alex' />
+    <control-with-internal-container>
+      <dom-di-container>
+        <service-b-control></service-b-control>
+        <custom-b-control></custom-b-control>
+        <dom-di-property name='FirstNameProperty' value='defaultName' lowPriority/>
+      </dom-di-container>
+    </control-with-internal-container>
+  </dom-di-container>
+
 </body>
 
 </html>

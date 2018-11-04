@@ -1,34 +1,16 @@
-<link rel="import" href="../../../polymer/polymer-element.html">
-<link rel="import" href="../diContainerMixin.html">
-
-<dom-module id="dom-di-container">
-  <template>
-    <style>
-      :host {
-        display: block;
-      }
-    </style>
-    <slot></slot>
-  </template>
-
-  <script>
-    class DomDiContainer extends diContainerMixin(Polymer.Element) {
-      static get is() { return 'dom-di-container'; }
-      static get properties() {
-        return {
-          container: {
-            type: Object,
-            value: {}
-          }
-        };
-      }
-
-      ready() {
-        if (super.ready) {
-          super.ready();
+<script>
+  class DomDiContainer extends diContainerMixin(HTMLElement) {
+    constructor() {
+      super();
+      var root = this.attachShadow({ mode: 'open' })
+      root.innerHTML = `
+      <style>
+        :host {
+          display: block;
         }
-      }
+      </style>
+      <slot></slot>`;      
     }
-    window.customElements.define(DomDiContainer.is, DomDiContainer);
-  </script>
-</dom-module>
+  }
+  window.customElements.define('dom-di-container', DomDiContainer);
+</script>

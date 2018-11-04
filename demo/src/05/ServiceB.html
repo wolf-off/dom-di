@@ -1,44 +1,33 @@
-<dom-module id="service-b-control">
-  <template>
-    <style>
-      :host {
-        display: block;
-        background: azure;
-        border: solid 1px black;
-        margin: 5px;
-      }
-    </style>
-    <div>
+<script>
+  class ServiceBControl extends HTMLElement {
+    constructor() {
+      super();
+      var root = this.attachShadow({ mode: 'open' })
+      root.innerHTML = `
+      <style>
+        :host {
+          display: block;
+          border: solid black 1px;
+          background: aquamarine;
+          margin: 5px;
+        }
+      </style>
       <div>
-        Service B control
-      </div>
-      <slot></slot>
-    </div>
-  </template>
-
-  <script>
-    class ServiceBControl extends Polymer.Element {
-      static get is() { return 'service-b-control'; }
-      static get properties() {
-        return {
-        };
-      }
-
-      ready() {
-        super.ready();
-        const that = this;
-        this.addEventListener('service-b-instance-request', (event) => {
-          event.detail.callback(that);
-          event.preventDefault();
-          event.stopPropagation();
-        });
-      }
-
-      sayHello() {
-        return 'Hello from B';
-      }
-
+        <div>
+          Service B control
+        </div>
+        <slot></slot>
+      </div>`;
+      this.addEventListener('service-b-instance-request', (event) => {
+        event.detail.callback(this);
+        event.preventDefault();
+        event.stopPropagation();
+      });
     }
-    window.customElements.define(ServiceBControl.is, ServiceBControl);
-  </script>
-</dom-module>
+
+    sayHello() {
+      return 'Hello from B';
+    }
+  }
+  window.customElements.define('service-b-control', ServiceBControl);
+</script>

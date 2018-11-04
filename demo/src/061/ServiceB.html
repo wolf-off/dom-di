@@ -1,5 +1,5 @@
 <script>
-  class ServiceControl extends HTMLElement {
+  class ServiceBControl extends HTMLElement {
     constructor() {
       super();
       var root = this.attachShadow({ mode: 'open' })
@@ -14,20 +14,22 @@
       </style>
       <div>
         <div>
-          Service control
+          Service B control
         </div>
         <slot></slot>
       </div>`;
-      this.addEventListener('service-instance-request', (event) => {
-        event.detail.callback(this);
-        event.preventDefault();
-        event.stopPropagation();
+      const event = new CustomEvent('dom-di-instance', {
+        detail: { instance: this, type: 'service-b' },
+        bubbles: true,
+        cancelable: true,
+        composed: true
       });
+      this.dispatchEvent(event);
     }
 
     sayHello() {
-      return 'Hello';
+      return 'Hello from B';
     }
   }
-  window.customElements.define('service-control', ServiceControl);
+  window.customElements.define('service-b-control', ServiceBControl);
 </script>

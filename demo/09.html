@@ -7,11 +7,8 @@
 
   <title>dom-di demo</title>
 
-  <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
   <script src="../src/diContainer.js"></script>
 
-  <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
-  <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
   <link rel="import" href="../src/Controls/Container.html">
   <link rel="import" href="./src/06/Container.html">
   <link rel="import" href="./src/06/Custom.html">
@@ -26,25 +23,21 @@
 </head>
 
 <body>
-  <div class="vertical-section-container centered">
-    <h3>Basic dom-di demo</h3>
-    <demo-snippet>
-      <template>
-        <dom-di-container>
-          <dom-di-property name='FirstNameProperty' value='Alex' />
-          <service-control>
-            <dom-di-parent-injector injectAs='IService'>
-              <dom-di-property-inject name='FirstNameProperty' 
-                                      injectAs='firstName'>
-              </dom-di-property-inject>
-            </dom-di-parent-injector>
-          </service-control>
-          <dom-di-exec name='IService' method='sayHello'>
-          </dom-di-exec>
-        </dom-di-container>
-      </template>
-    </demo-snippet>
-  </div>
+
+  <h3>Basic dom-di demo</h3>
+
+  <dom-di-container>
+    <dom-di-property name='FirstNameProperty' value='Alex' />
+    <service-control>
+      <dom-di-parent-injector injectAs='IService'>
+        <dom-di-property-inject name='FirstNameProperty' injectAs='firstName'>
+        </dom-di-property-inject>
+      </dom-di-parent-injector>
+    </service-control>
+    <dom-di-exec name='IService' method='sayHello'>
+    </dom-di-exec>
+  </dom-di-container>
+
 </body>
 
 </html>

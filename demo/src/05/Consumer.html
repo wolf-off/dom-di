@@ -1,0 +1,66 @@
+<script>
+  class ConsumerControl extends HTMLElement {
+    constructor() {
+      super();
+
+      var root = this.attachShadow({ mode: 'open' })
+      root.innerHTML = `
+      <style>
+        :host {
+          display: block;
+          background: azure;
+          border: solid 1px black;
+        }
+      </style>
+      <div>
+        <div>
+          Consumer control
+        </div>
+        <div>Message A:<span id='messageA'></span></div>
+        <div>Message B:<span id='messageB'></span></div>
+        <div>Message C:<span id='messageC'></span></div>
+        <div>
+          <button id='send'>Send request for services</button>
+        </div>
+        <slot></slot>
+      </div>
+        `;
+      root.getElementById('send').onclick = function () {
+        var event = new CustomEvent('service-a-instance-request', {
+          detail: {
+            callback: (instance) => {
+              root.getElementById('messageA').innerHTML = instance.sayHello();
+            }
+          },
+          bubbles: true,
+          cancelable: true,
+          composed: true
+        });
+        this.dispatchEvent(event);
+        event = new CustomEvent('service-b-instance-request', {
+          detail: {
+            callback: (instance) => {
+              root.getElementById('messageB').innerHTML = instance.sayHello();
+            }
+          },
+          bubbles: true,
+          cancelable: true,
+          composed: true
+        });
+        this.dispatchEvent(event);
+        event = new CustomEvent('service-c-instance-request', {
+          detail: {
+            callback: (instance) => {
+              root.getElementById('messageC').innerHTML = instance.sayHello();
+            }
+          },
+          bubbles: true,
+          cancelable: true,
+          composed: true
+        });
+        this.dispatchEvent(event);
+      }
+    }
+  }
+  window.customElements.define('consumer-control', ConsumerControl);
+</script>
