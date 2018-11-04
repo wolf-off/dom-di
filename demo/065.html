@@ -52,19 +52,26 @@
   <script type="text/babel" src="src/diObjectMixinBabel.js"></script>
   <script type="text/babel" src="demo/src/065/react/app.js"></script>
 
+  <!--angularJs loads-->
+  <script src="demo/src/065/angularJs/angular.min.js"></script>
+  <script src="demo/src/065/angularJs/app.js"></script>
+
   <container-control>
-    <service-a-control></service-a-control>
-    <!-- service-b-control-->
+    <service-a-control></service-a-control>    
     <div class="app">
       <div>Angular 7</div>
-      <app-root></app-root>
-    </div>
-    <!-- service-c-control -->
+      <app-root></app-root><!-- service-b-control-->
+    </div>    
     <div class="app">
       <div>React</div>
-      <div id="root"></div>
-    </div>
-    <service-d-control></service-d-control>
+      <div id="root"></div><!-- service-c-control -->
+    </div>    
+    <div class="app">
+        <div>AngularJs</div>
+        <div ng-app="angApp">
+          <ang-component></ang-component><!-- service-d-control -->
+        </div>
+     </div>
     <service-e-control></service-e-control>
     <consumer-control></consumer-control>
   </container-control>
