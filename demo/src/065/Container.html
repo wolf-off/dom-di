@@ -1,0 +1,24 @@
+<script>
+  class ContainerControl extends diContainerMixin(HTMLElement) {
+    constructor() {
+      super();
+      var root = this.attachShadow({ mode: 'open' })
+      root.innerHTML = `
+      <style>
+        :host {
+          display: block;
+          border: solid black 1px;
+          background: white;
+          margin: 5px;
+        }
+      </style>
+      <div>
+        <div>
+          Container control
+        </div>
+        <slot></slot>
+      </div>`;
+    }
+  }
+  window.customElements.define('container-control', ContainerControl);
+</script>

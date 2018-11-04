@@ -1,0 +1,34 @@
+<script>
+  class ConsumerControl extends diObjectMixin(HTMLElement) {
+    constructor() {
+      super();
+
+      this.typeName = 'consumer';
+      this.dependencies = ['service-c'];
+      this.diReady = (serviceC) => {
+        root.getElementById('messageC').innerHTML = serviceC.sayHello();
+        return this;
+      }
+
+      var root = this.attachShadow({ mode: 'open' })
+      root.innerHTML = `
+      <style>
+        :host {
+          display: block;
+          background: azure;
+          border: solid 1px black;
+          margin: 5px;
+        }
+      </style>
+      <div>
+        <div>
+          Consumer control
+        </div>
+        <div>Message from C: <span id='messageC'></span></div>
+        <slot></slot>
+      </div>
+        `;
+    }
+  }
+  window.customElements.define('consumer-control', ConsumerControl);
+</script>

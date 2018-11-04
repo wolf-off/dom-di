@@ -21,13 +21,13 @@ const diContainerMixin = (superClass) => {
         event.stopPropagation();
       });
 
-      setTimeout(() => {
-        this.querySelectorAll('*').forEach(element => {
-          if (element.onDependenciesRequest && typeof element.onDependenciesRequest == "function") {
-            element.onDependenciesRequest();
-          }
-        });
-      }, 200);
+      // setTimeout(() => {
+      //   this.querySelectorAll('*').forEach(element => {
+      //     if (element.onDependenciesRequest && typeof element.onDependenciesRequest == "function") {
+      //       element.onDependenciesRequest();
+      //     }
+      //   });
+      // }, 3000);
     }
   };
 };

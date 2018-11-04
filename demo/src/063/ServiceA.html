@@ -1,0 +1,35 @@
+<script>
+  class ServiceAControl extends diObjectMixin(HTMLElement) {
+    constructor() {
+      super();
+
+      this.dependencies = [];
+      this.typeName = 'service-a';
+      this.diReady=()=>{
+        return this;
+      }
+
+      var root = this.attachShadow({ mode: 'open' })
+      root.innerHTML = `
+      <style>
+        :host {
+          display: block;
+          border: solid black 1px;
+          background: aquamarine;
+          margin: 5px;
+        }
+      </style>
+      <div>
+        <div>
+          Service A control
+        </div>
+        <slot></slot>
+      </div>`;
+    }
+
+    sayHello() {
+      return 'Hello from A';
+    }
+  }
+  window.customElements.define('service-a-control', ServiceAControl);
+</script>

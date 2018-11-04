@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <base href="/">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+  <title>dom-di demo</title>
+
+  <script src="../src/diContainer.js"></script>
+  <script src="../src/diContainerMixin.js"></script>
+  <script src="../src/diObjectMixin.js"></script>
+
+  <link rel="import" href="../src/Controls/Container.html">
+  <link rel="import" href="demo/src/065/Container.html">
+  <link rel="import" href="demo/src/065/Consumer.html">
+  <link rel="import" href="demo/src/065/ServiceA.html">
+  <link rel="import" href="demo/src/065/ServiceB.html">
+  <link rel="import" href="demo/src/065/ServiceC.html">
+
+
+  <custom-style>
+    <style is="custom-style" include="demo-pages-shared-styles">
+    </style>
+  </custom-style>
+</head>
+
+<body>
+
+  <h3>Basic dom-di demo</h3>
+
+  <container-control>
+    <service-a-control></service-a-control>
+    <!-- service-b-control-->
+    <app-root></app-root>
+    <service-c-control></service-c-control>
+    <consumer-control></consumer-control>
+  </container-control>
+
+  <!--angular 7 loads-->
+  <script type="text/javascript" src="demo/src/065/angular7/dist/runtime.js"></script>
+  <script type="text/javascript" src="demo/src/065/angular7/dist/polyfills.js"></script>
+  <script type="text/javascript" src="demo/src/065/angular7/dist/styles.js"></script>
+  <script type="text/javascript" src="demo/src/065/angular7/dist/vendor.js"></script>
+  <script type="text/javascript" src="demo/src/065/angular7/dist/main.js"></script>
+
+</body>
+
+</html>
