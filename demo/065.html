@@ -57,22 +57,31 @@
   <script src="demo/src/065/angularJs/app.js"></script>
 
   <container-control>
-    <service-a-control></service-a-control>    
+    <service-a-control></service-a-control>
     <div class="app">
       <div>Angular 7</div>
-      <app-root></app-root><!-- service-b-control-->
-    </div>    
+      <app-root></app-root>
+      <!-- service-b-control-->
+    </div>
     <div class="app">
       <div>React</div>
-      <div id="root"></div><!-- service-c-control -->
-    </div>    
+      <div id="root"></div>
+      <!-- service-c-control -->
+    </div>
     <div class="app">
-        <div>AngularJs</div>
-        <div ng-app="angApp">
-          <ang-component></ang-component><!-- service-d-control -->
-        </div>
-     </div>
-    <service-e-control></service-e-control>
+      <div>AngularJs</div>
+      <div ng-app="angApp">
+        <ang-component></ang-component>
+        <!-- service-d-control -->
+      </div>
+    </div>
+    <div class="app">
+      <div>Vue</div>
+      <div id="app">
+        <vue-component></vue-component>
+        <!-- service-e-control -->
+      </div>
+    </div>
     <consumer-control></consumer-control>
   </container-control>
 
@@ -83,6 +92,9 @@
   <script type="text/javascript" src="demo/src/065/angular7/dist/vendor.js"></script>
   <script type="text/javascript" src="demo/src/065/angular7/dist/main.js"></script>
 
+  <!--angularJs loads-->
+  <script src="demo/src/065/vue/vue.js"></script>
+  <script src="demo/src/065/vue/app.js"></script>
 
 
 </body>
