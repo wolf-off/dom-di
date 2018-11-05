@@ -26,13 +26,6 @@
         </div>
         <slot></slot>
       </div>`;
-      const event = new CustomEvent('dom-di-instance', {
-        detail: { instance: this, type: 'service-c' },
-        bubbles: true,
-        cancelable: true,
-        composed: true
-      });
-      this.dispatchEvent(event);
     }
 
     sayHello() {
