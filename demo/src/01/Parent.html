@@ -2,7 +2,6 @@
   class ParentControl extends HTMLElement {
     constructor() {
       super();
-
       var root = this.attachShadow({ mode: 'open' })
       root.innerHTML = `
         <style>
@@ -18,9 +17,7 @@
           </div>
           <div>Message:<span id='message'></span></div>
           <slot></slot>
-        </div>
-        `;
-      const that = this;
+        </div>`;
       this.addEventListener('child-message', (event) => {
         root.getElementById('message').innerHTML = event.detail.message;
       });
