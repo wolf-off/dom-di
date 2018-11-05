@@ -24,20 +24,25 @@
 
 <body>
 
-  <h3>Basic dom-di demo</h3>
+  <h3>Default injections</h3>
 
   <dom-di-container>
-    <dom-di-rules>
-      <dom-di-injector item='service-control' injectAs='IService'>
-      </dom-di-injector>
-      <dom-di-injector item='custom-control'>
-        <dom-di-property-inject name='IService' injectAs='service'>
-      </dom-di-injector>
-    </dom-di-rules>
-    <service-control></service-control>
-    <custom-control></custom-control>
+    <service-a-control-v1></service-control>
+
+    <your-control>
+      <!---<shadow DOM>-->
+      <dom-di-container>
+        <service-a-control-v2 lowPriority></service-control>
+        <custom-control></custom-control>
+      </dom-di-container>
+      <!---</shadow DOM>-->
+    </your-control>
+
   </dom-di-container>
 
+  <div>
+    <a href="103.html">prev</a>
+  </div>
 </body>
 
 </html>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+  <title>dom-di demo</title>
+
+  <script src="../src/diContainer.js"></script>
+
+  <link rel="import" href="../src/Controls/Container.html">
+  <link rel="import" href="./src/06/Container.html">
+  <link rel="import" href="./src/06/Custom.html">
+  <link rel="import" href="./src/06/ServiceA.html">
+  <link rel="import" href="./src/06/ServiceB.html">
+  <link rel="import" href="./src/06/ServiceC.html">
+
+  <custom-style>
+    <style is="custom-style" include="demo-pages-shared-styles">
+    </style>
+  </custom-style>
+</head>
+
+<body>
+
+  <h3>Passive injection</h3>
+
+  <dom-di-container>
+    <dom-di-rules>
+      <dom-di-injector item='service-control' injectAs='IService'>
+      </dom-di-injector>
+      <dom-di-injector item='custom-control'>
+        <dom-di-property-inject name='IService' injectAs='service'>
+      </dom-di-injector>
+    </dom-di-rules>
+
+    <service-control></service-control>
+    <custom-control></custom-control>
+  </dom-di-container>
+
+  <div>
+    <a href="101.html">prev</a>
+    <a href="103.html">next</a>
+  </div>
+</body>
+
+</html>
