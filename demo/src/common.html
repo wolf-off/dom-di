@@ -1,0 +1,15 @@
+<script src="highlight/highlight.min.js"></script>
+<link rel="stylesheet" href="highlight/default.min.css" />
+<script>
+    hljs.initHighlightingOnLoad();
+    var body = document.querySelector('body');
+
+    var code = body.children[1].outerHTML;
+    code = hljs.highlightAuto(code).value;
+
+    var element = document.createElement('pre');
+
+    element.innerHTML = '<code class="html">' + code + '</code>';
+
+    body.insertBefore(element, body.children[2]);
+</script>
