@@ -1,0 +1,26 @@
+<script>
+  class DomDiPropertyInject extends diObjectMixin(HTMLElement) {
+    constructor() {
+      super();
+      var root = this.attachShadow({ mode: 'open' })
+      root.innerHTML = `
+      <slot></slot>`;
+    }
+
+    get dependencies() {
+      return [this.getAttribute('injectas')];
+    }
+
+    get typeName() {
+      return undefined;
+    }
+
+    diReady(instance) {
+      let property = this.getAttribute('name');
+      this.parentElement[property] = instance;
+      return this;
+    }
+
+  }
+  window.customElements.define('dom-di-property-inject', DomDiPropertyInject);
+</script>

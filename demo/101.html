@@ -8,13 +8,14 @@
   <title>dom-di demo</title>
 
   <script src="../src/diContainer.js"></script>
+  <script src="../src/diContainerMixin.js"></script>
+  <script src="../src/diObjectMixin.js"></script>
 
   <link rel="import" href="../src/Controls/Container.html">
-  <link rel="import" href="./src/06/Container.html">
-  <link rel="import" href="./src/06/Custom.html">
-  <link rel="import" href="./src/06/ServiceA.html">
-  <link rel="import" href="./src/06/ServiceB.html">
-  <link rel="import" href="./src/06/ServiceC.html">
+  <link rel="import" href="../src/Controls/Injector.html">
+  <link rel="import" href="../src/Controls/PropertyInject.html">
+  <link rel="import" href="./src/101/Consumer.html">
+  <link rel="import" href="./src/101/Service.html">
 </head>
 
 <body>
@@ -22,13 +23,13 @@
   <h3>Force injection</h3>
 
   <dom-di-container>
-    <dom-di-child-injector injectAs='service'>
+    <dom-di-injector injectAs='service'>
       <service-control></service-control>
-    </dom-di-child-injector>
+    </dom-di-injector>
 
-    <custom-control>
+    <consumer-control>
         <dom-di-property-inject name='service' injectAs='service'/>
-    </custom-control>
+    </consumer-control>
   </dom-di-container>
 
   <div>

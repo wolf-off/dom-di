@@ -1,0 +1,24 @@
+<script>
+  class DomDiInjector extends diObjectMixin(HTMLElement) {
+    constructor() {
+      super();
+      var root = this.attachShadow({ mode: 'open' })
+      root.innerHTML = `
+      <slot></slot>`;
+    }
+
+    get dependencies() {
+      return [];
+    }
+
+    get typeName() {
+      return this.getAttribute('injectas');
+    }
+
+    diReady() {
+      return this.children[0];
+    }
+
+  }
+  window.customElements.define('dom-di-injector', DomDiInjector);
+</script>
