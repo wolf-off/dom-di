@@ -1,0 +1,28 @@
+<script>
+  class ServiceControl extends HTMLElement {
+    constructor() {
+      super();
+      var root = this.attachShadow({ mode: 'open' })
+      root.innerHTML = `
+      <style>
+        :host {
+          display: block;
+          border: solid black 1px;
+          background: aquamarine;
+          margin: 5px;
+        }
+      </style>
+      <div>
+        <div>
+          Service control
+        </div>
+        <slot></slot>
+      </div>`;
+    }
+
+    sayHello() {
+      return 'Hello!';
+    }
+  }
+  window.customElements.define('service-control', ServiceControl);
+</script>

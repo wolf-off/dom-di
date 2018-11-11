@@ -5,16 +5,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-  <title>dom-di demo</title>
+  <title>Rules</title>
 
   <script src="../src/diContainer.js"></script>
+  <script src="../src/diContainerMixin.js"></script>
+  <script src="../src/diObjectMixin.js"></script>
 
   <link rel="import" href="../src/Controls/Container.html">
-  <link rel="import" href="./src/06/Container.html">
-  <link rel="import" href="./src/06/Custom.html">
-  <link rel="import" href="./src/06/ServiceA.html">
-  <link rel="import" href="./src/06/ServiceB.html">
-  <link rel="import" href="./src/06/ServiceC.html">
+  <link rel="import" href="../src/Controls/Injector.html">
+  <link rel="import" href="../src/Controls/PropertyInject.html">
+  <link rel="import" href="./src/102/Consumer.html">
+  <link rel="import" href="./src/102/Service.html">
 </head>
 
 <body>
@@ -23,10 +24,10 @@
 
   <dom-di-container>
     <dom-di-rules>
-      <dom-di-injector item='service-control' injectAs='IService'>
+      <dom-di-injector item='service-control' injectAs='service'>
       </dom-di-injector>
-      <dom-di-injector item='custom-control'>
-        <dom-di-property-inject name='IService' injectAs='service'>
+      <dom-di-injector item='consumer-control'>
+        <dom-di-property-inject name='service' injectAs='service'>
       </dom-di-injector>
     </dom-di-rules>
 

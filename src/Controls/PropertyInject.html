@@ -17,8 +17,16 @@
 
     diReady(instance) {
       let property = this.getAttribute('name');
-      this.parentElement[property] = instance;
-      return this;
+      let element;
+      if (this.parentElement.localName == 'dom-di-injector') {
+        element = this.parentElement.getElement();
+      } else {
+        element = this.parentElement;
+      }
+      if (element) {
+        element[property] = instance;
+      }
+      return element;
     }
 
   }
