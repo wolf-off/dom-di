@@ -22,4 +22,8 @@ export class AppComponent extends diObjectMixin(Object) {
   sayHello() {
     return 'B knows that A sais: ' + this.serviceA.sayHello();
   }
+
+  dispatchEvent(event) {
+    this.elRef.nativeElement.dispatchEvent(event);
+  }
 }

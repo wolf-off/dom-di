@@ -8,6 +8,13 @@ Vue.component('vue-component', {
     }
   },
   methods: {
+    sayHello: function () {
+      return 'E knows that D sais: ' + this.serviceD.sayHello();
+    },
+    diReady: function (serviceD) {
+      this.serviceD = serviceD;
+      return this;
+    },
     onDependenciesRequest: function () {
       if (this.dependencies && this.dependencies.length > 0) {
         var config = new diRequestParameters();
@@ -42,13 +49,6 @@ Vue.component('vue-component', {
         composed: true
       });
       this.dispatchEvent(event);
-    },
-    sayHello: function () {
-      return 'E knows that D sais: ' + this.serviceD.sayHello();
-    },
-    diReady: function (serviceD) {
-      this.serviceD = serviceD;
-      return this;
     }
   },
   created: function () {
