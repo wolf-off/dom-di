@@ -1,0 +1,27 @@
+<script>
+  class ParentControl extends HTMLElement {
+    constructor() {
+      super();
+      var root = this.attachShadow({ mode: 'open' })
+      root.innerHTML = `
+        <style>
+          :host {
+            display: block;
+            background: azure;
+            border: solid 1px black;
+          }
+        </style>
+        <div>
+          <div>
+            Parent control
+          </div>
+          <div>Message:<span id='message'></span></div>
+          <slot></slot>
+        </div>`;
+      this.addEventListener('child-message', (event) => {
+        root.getElementById('message').innerHTML = event.detail.message;
+      });
+    }
+  }
+  window.customElements.define('parent-control', ParentControl);
+</script>

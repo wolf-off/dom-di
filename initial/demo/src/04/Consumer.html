@@ -1,0 +1,42 @@
+<script>
+  class ConsumerControl extends HTMLElement {
+    constructor() {
+      super();
+
+      var root = this.attachShadow({ mode: 'open' })
+      root.innerHTML = `
+      <style>
+        :host {
+          display: block;
+          background: azure;
+          border: solid 1px black;
+        }
+      </style>
+      <div>
+        <div>
+          Consumer control
+        </div>
+        <div>Message:<span id='message'></span></div>
+        <div>
+          <button id='send'>Send request for service</button>
+        </div>
+        <slot></slot>
+      </div>
+        `;
+      root.getElementById('send').onclick = function () {
+        const event = new CustomEvent('service-instance-request', {
+          detail: {
+            callback: (instance) => {
+              root.getElementById('message').innerHTML = instance.sayHello();
+            }
+          },
+          bubbles: true,
+          cancelable: true,
+          composed: true
+        });
+        this.dispatchEvent(event);
+      }
+    }
+  }
+  window.customElements.define('consumer-control', ConsumerControl);
+</script>

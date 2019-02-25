@@ -1,0 +1,36 @@
+<script>
+  class ChildControl extends HTMLElement {
+    constructor() {
+      super();
+      var root = this.attachShadow({ mode: 'open' })
+      root.innerHTML = `
+          <style>
+            :host {
+              display: block;
+              border: solid black 1px;
+              background: aquamarine;
+              margin: 5px;
+            }
+          </style>
+          <div>
+            <div>
+              Child control
+            </div>
+            <div>
+              <button id='send' onclick="{{onClick}}">Send Hello</button>
+            </div>
+            <slot></slot>
+          </div>`;
+      root.getElementById('send').onclick = function () {
+        const event = new CustomEvent('child-message', {
+          detail: { message: "Hello" },
+          bubbles: true,
+          cancelable: true,
+          composed: true
+        });
+        this.dispatchEvent(event);
+      }
+    }
+  }
+  window.customElements.define('child-control', ChildControl);
+</script>

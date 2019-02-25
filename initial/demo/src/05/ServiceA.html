@@ -1,0 +1,33 @@
+<script>
+  class ServiceAControl extends HTMLElement {
+    constructor() {
+      super();
+      var root = this.attachShadow({ mode: 'open' })
+      root.innerHTML = `
+      <style>
+        :host {
+          display: block;
+          border: solid black 1px;
+          background: aquamarine;
+          margin: 5px;
+        }
+      </style>
+      <div>
+        <div>
+          Service A control
+        </div>
+        <slot></slot>
+      </div>`;
+      this.addEventListener('service-a-instance-request', (event) => {
+        event.detail.callback(this);
+        event.preventDefault();
+        event.stopPropagation();
+      });
+    }
+
+    sayHello() {
+      return 'Hello from A';
+    }
+  }
+  window.customElements.define('service-a-control', ServiceAControl);
+</script>

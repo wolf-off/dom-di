@@ -1,0 +1,40 @@
+<link rel="import" href="../../../../polymer/polymer-element.html">
+<link rel="import" href="../../../src/diObjectMixin.html">
+
+<dom-module id="dom-di-test-provider-simple">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <slot></slot>
+  </template>
+
+  <script>
+    class DomDiTestProviderSimple extends diObjectMixin(Polymer.Element) {
+      constructor() {
+        super();
+        this.dependencies = [];
+        this.typeName = 'dom-di-test-provider-simple';
+      }
+      static get is() { return 'dom-di-test-provider-simple'; }
+      static get properties() {
+        return {
+        };
+      }
+
+      diReady(instance) {
+        this.instance = instance;
+        return 'dom-di-test-provider-simple';
+      }
+
+      ready() {
+        if (super.ready) {
+          super.ready();
+        }
+      }
+    }
+    window.customElements.define(DomDiTestProviderSimple.is, DomDiTestProviderSimple);
+  </script>
+</dom-module>

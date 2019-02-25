@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <base href="/">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+  <title>dom-di demo</title>
+
+  <script src="../src/diContainer.js"></script>
+  <script src="../src/diContainerMixin.js"></script>
+  <script src="../src/diObjectMixin.js"></script>
+
+  <link rel="import" href="../src/Controls/Container.html">
+  <link rel="import" href="demo/src/065/Container.html">
+  <link rel="import" href="demo/src/065/Consumer.html">
+  <link rel="import" href="demo/src/065/ServiceA.html">
+  <link rel="import" href="demo/src/065/ServiceB.html">
+  <link rel="import" href="demo/src/065/ServiceC.html">
+  <link rel="import" href="demo/src/065/ServiceD.html">
+  <link rel="import" href="demo/src/065/ServiceE.html">
+
+  <style>
+    .app {
+      border: gray solid 1px;
+      margin: 2px;
+    }
+
+    .app>div:nth-child(1) {
+      color: gray;
+      text-align: right;
+      font-size: 12px;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h3>Anything can be provided</h3>
+
+  <!--react loads-->
+  <script crossorigin src="demo/src/065/react/react.production.min.js"></script>
+  <script crossorigin src="demo/src/065/react/react-dom.production.min.js"></script>
+  <script src="demo/src/065/react/babel.min.js"></script>
+  <script type="text/babel" src="src/diObjectMixinBabel.js"></script>
+  <script type="text/babel" src="demo/src/065/react/app.js"></script>
+
+  <!--angularJs loads-->
+  <script src="demo/src/065/angularJs/angular.min.js"></script>
+  <script src="demo/src/065/angularJs/app.js"></script>
+
+  <container-control>
+    <service-a-control></service-a-control>
+    <div class="app">
+      <div>Angular 7</div>
+      <app-root></app-root>
+      <!-- service-b-control-->
+    </div>
+    <div class="app">
+      <div>React</div>
+      <div id="root"></div>
+      <!-- service-c-control -->
+    </div>
+    <div class="app">
+      <div>AngularJs</div>
+      <div ng-app="angApp">
+        <ang-component></ang-component>
+        <!-- service-d-control -->
+      </div>
+    </div>
+    <div class="app">
+      <div>Vue</div>
+      <div id="app">
+        <vue-component></vue-component>
+        <!-- service-e-control -->
+      </div>
+    </div>
+    <consumer-control></consumer-control>
+  </container-control>
+
+  <!--angular 7 loads-->
+  <script type="text/javascript" src="demo/src/065/angular7/dist/runtime.js"></script>
+  <script type="text/javascript" src="demo/src/065/angular7/dist/polyfills.js"></script>
+  <script type="text/javascript" src="demo/src/065/angular7/dist/styles.js"></script>
+  <script type="text/javascript" src="demo/src/065/angular7/dist/vendor.js"></script>
+  <script type="text/javascript" src="demo/src/065/angular7/dist/main.js"></script>
+
+  <!--angularJs loads-->
+  <script src="demo/src/065/vue/vue.js"></script>
+  <script src="demo/src/065/vue/app.js"></script>
+
+  <div>
+      <a href="demo/063.html">prev</a>
+      <a href="demo/101.html">next</a>
+  </div>
+  <!-- <link rel="import" href="src/common.html"/> -->
+</body>
+
+</html>

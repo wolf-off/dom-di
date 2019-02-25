@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+  <title>dom-di test</title>
+
+  <script src="../../../webcomponentsjs/webcomponents-loader.js"></script>
+  <script src="../../../web-component-tester/browser.js"></script>
+
+  <script src="../../src/diContainer.js"></script>
+  <link rel="import" href="../../src/diContainerMixin.html">
+  <link rel="import" href="../../src/diObjectMixin.html">
+  <link rel="import" href="../../src/Controls/Container.html">
+  <link rel="import" href="Controls/ProviderSimple.html">
+  <link rel="import" href="Controls/ObjectSimple.html">
+  <link rel="import" href="Controls/ConsumerSimple.html">
+</head>
+
+<body>
+
+  <test-fixture id="BasicFixture">
+    <template>
+      <dom-di-container>
+        <dom-di-test-provider-simple></dom-di-test-provider-simple>
+        <dom-di-test-object-simple></dom-di-test-object-simple>
+        <dom-di-test-consumer-simple></dom-di-test-consumer-simple>
+      </dom-di-container>
+    </template>
+  </test-fixture>
+
+  <script>
+    suite('Basic', function () {
+
+      let container;
+      let providerControl;
+      let objectControl;
+      let consumerControl;
+      let clock;
+
+      setup(function (done) {
+        clock = sinon.useFakeTimers();
+        container = fixture('BasicFixture');
+        providerControl = container.querySelector('dom-di-test-provider-simple');
+        objectControl = container.querySelector('dom-di-test-object-simple');
+        consumerControl = container.querySelector('dom-di-test-consumer-simple');
+        animationFrameFlush(done);
+      });
+
+      teardown(function () {
+        clock.restore();
+        container = undefined;
+      });
+
+      test('mixin runs', function () {
+        assert.equal(container != null, true);
+        assert.equal(providerControl != null, true);
+        assert.equal(objectControl != null, true);
+        assert.equal(consumerControl != null, true);
+      });
+
+      test('register request', function () {
+        clock.tick(5100);
+        assert.equal(container.container != null, true);
+        assert.equal(container.container.requests.length, 0);
+        assert.equal(container.container.instances['dom-di-test-provider-simple'], 'dom-di-test-provider-simple');
+        assert.equal(container.container.instances['dom-di-test-object-simple'], 'dom-di-test-object-simple');
+        assert.equal(container.container.instances['dom-di-test-consumer-simple'], 'dom-di-test-consumer-simple');
+        assert.equal(consumerControl.instance, 'dom-di-test-object-simple');
+        assert.equal(objectControl.instance, 'dom-di-test-provider-simple');
+        assert.equal(typeof providerControl.instance, 'undefined');
+      });
+    });
+  </script>
+
+</body>
+
+</html>

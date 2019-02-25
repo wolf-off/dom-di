@@ -1,0 +1,60 @@
+<script>
+  class ContainerControl extends HTMLElement {
+    constructor() {
+      super();
+      var root = this.attachShadow({ mode: 'open' })
+      root.innerHTML = `
+      <style>
+        :host {
+          display: block;
+          border: solid black 1px;
+          background: white;
+          margin: 5px;
+        }
+      </style>
+      <div>
+        <div>
+          Container control
+        </div>
+        <div>Has instance A: <span id='instanceA'>False</span></div>
+        <div>Has instance B: <span id='instanceB'>False</span></div>
+        <div>Has instance C: <span id='instanceC'>False</span></div>
+        <slot></slot>
+      </div>`;
+      this.addEventListener('service-a-instance', (event) => {
+          this.instanceA = event.detail.instance;
+          root.getElementById('instanceA').innerHTML = 'True';
+          event.preventDefault();
+          event.stopPropagation();
+        });
+        this.addEventListener('service-b-instance', (event) => {
+          this.instanceB = event.detail.instance;
+          root.getElementById('instanceB').innerHTML = 'True';
+          event.preventDefault();
+          event.stopPropagation();
+        });
+        this.addEventListener('service-c-instance', (event) => {
+          this.instanceC = event.detail.instance;
+          root.getElementById('instanceC').innerHTML = 'True';
+          event.preventDefault();
+          event.stopPropagation();
+        });
+        this.addEventListener('service-a-instance-request', (event) => {
+          event.detail.callback(this.instanceA);
+          event.preventDefault();
+          event.stopPropagation();
+        });
+        this.addEventListener('service-b-instance-request', (event) => {
+          event.detail.callback(this.instanceB);
+          event.preventDefault();
+          event.stopPropagation();
+        });
+        this.addEventListener('service-c-instance-request', (event) => {
+          event.detail.callback(this.instanceC);
+          event.preventDefault();
+          event.stopPropagation();
+        });
+    }
+  }
+  window.customElements.define('container-control', ContainerControl);
+</script>

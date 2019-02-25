@@ -1,0 +1,16 @@
+<script>
+  class DomDiContainer extends diContainerMixin(HTMLElement) {
+    constructor() {
+      super();
+      var root = this.attachShadow({ mode: 'open' })
+      root.innerHTML = `
+      <style>
+        :host {
+          display: block;
+        }
+      </style>
+      <slot></slot>`;      
+    }
+  }
+  window.customElements.define('dom-di-container', DomDiContainer);
+</script>

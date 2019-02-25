@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+  <title>dom-di demo</title>
+
+  <script src="../src/diContainer.js"></script>
+  <script src="../src/diContainerMixin.js"></script>
+  <script src="../src/diObjectMixin.js"></script>
+
+  <link rel="import" href="../src/Controls/Container.html">
+  <link rel="import" href="./src/063/Container.html">
+  <link rel="import" href="./src/063/Consumer.html">
+  <link rel="import" href="./src/063/ServiceA.html">
+  <link rel="import" href="./src/063/ServiceB.html">
+  <link rel="import" href="./src/063/ServiceC.html">
+</head>
+
+<body>
+
+  <h3>Service is consumer</h3>
+
+  <container-control>
+    <service-a-control></service-a-control>
+    <service-b-control></service-b-control>
+    <service-c-control></service-c-control>
+    <consumer-control></consumer-control>
+  </container-control>
+
+  <div>
+      <a href="061.html">prev</a>
+      <a href="065.html">next</a>
+  </div>
+  <link rel="import" href="src/common.html"/>
+</body>
+
+</html>

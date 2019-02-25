@@ -1,0 +1,48 @@
+<script>
+  class DomDiInjector extends diObjectMixin(HTMLElement) {
+    constructor() {
+      super();
+      var root = this.attachShadow({ mode: 'open' })
+      root.innerHTML = `
+      <slot></slot>`;
+    }
+
+    get dependencies() {
+      return [];
+    }
+
+    get typeName() {
+      return this.getAttribute('injectas');
+    }
+
+    diReady() {
+      let item = this.getAttribute('item');
+      if (!item) {
+        return this.children[0];
+      } else {
+        return this.getElement();
+      }
+    }
+    getElement() {
+      let item = this.getAttribute('item');
+      return this.search(this.parentElement.parentElement, item)
+    }
+
+    search(element, item) {
+      if (element.localName == item) {
+        return element;
+      } else {
+        if (element.children) {
+          for (let i = 0; i < element.children.length; i++) {
+            let child = element.children[i];
+            var result = this.search(child, item);
+            if (result) return result;
+          }
+        }
+        return null;
+      }
+    }
+
+  }
+  window.customElements.define('dom-di-injector', DomDiInjector);
+</script>

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+  <title>dom-di demo</title>
+
+  <link rel="import" href="./src/05/Consumer.html">
+  <link rel="import" href="./src/05/ServiceA.html">
+  <link rel="import" href="./src/05/ServiceB.html">
+  <link rel="import" href="./src/05/ServiceC.html">
+</head>
+
+<body>
+
+  <h3>Several services</h3>
+
+  <service-a-control>
+    <service-b-control>
+      <service-c-control>
+        <consumer-control></consumer-control>
+        <consumer-control></consumer-control>
+        <consumer-control></consumer-control>
+      </service-c-control>
+    </service-b-control>
+  </service-a-control>
+
+  <div>
+      <a href="04.html">prev</a>
+      <a href="06.html">next</a>
+  </div>
+  <link rel="import" href="src/common.html"/>
+</body>
+
+</html>
