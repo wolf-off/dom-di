@@ -85,10 +85,10 @@ See [Frameworks](#Frameworks) section for framefork's specific information
 2. Implement `dispatchEvent` method to send events to DOM
 
     It depends on frameworks:
-1. [AngularJS](##AngularJS)
-2. [Angular](##Angular)
-3. [React](##React)
-4. [Vue](##Vue)
+1. [AngularJS](#AngularJS)
+2. [Angular](#Angular)
+3. [React](#React)
+4. [Vue](#Vue)
 
     If your control is some framework's control, realize `dispatchEvent` method to send events to DOM
 
