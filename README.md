@@ -1,7 +1,9 @@
 # DOM-DI Project
 
   Site of project:  [http://dom-di.org](http://dom-di.org)
+
   NPM :  [dom-di](http://dom-di.org)
+  
   GitHub:  [https://github.com/wolf-off/dom-di](https://github.com/wolf-off/dom-di)
 
 ## Purpose
