@@ -1,6 +1,10 @@
 # DOM-DI Project
 
-  Site of project:  [dom-di.org](http://dom-di.org)
+  Site of project:  [http://dom-di.org](http://dom-di.org)
+  NPM :  [dom-di](http://dom-di.org)
+  GitHub:  [https://github.com/wolf-off/dom-di](https://github.com/wolf-off/dom-di)
+
+## Purpose
 
   Target of DOM-DI is support your frontend by low coupling.
   It allow you to implement Interaction and Dependency Injection between your component via DOM
@@ -72,7 +76,7 @@ If you have done well, diReady will be called with the control in parameters
 
 ## Common usage example
 
-  Control can be provided and receved simulteniously
+  Control can be provided and receved simulteniously.
   Control can contain several dependencies
 ```
       this.typeName = 'c-control';
