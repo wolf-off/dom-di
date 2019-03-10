@@ -28,11 +28,11 @@ Add
 
   1. Inherit both your control from `diObjectMixin` (`/src/diObjectMixin.js`)
     
-    ```
-    class MyControl extends diContainerMixin(HTMLElement) 
-    ```
+```
+class MyControl extends diContainerMixin(HTMLElement) 
+```
 
-    See [Frameworks](# Frameworks) section for framefork's specific information
+See [Frameworks](# Frameworks) section for framefork's specific information
 
   2. call diSubscribe to receive data
 ```
