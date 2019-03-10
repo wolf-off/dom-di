@@ -67,8 +67,21 @@ See [Frameworks](#Frameworks) section for framefork's specific information
       }
 ```
 
-  If you have done well, diReady will be called with the control in parameters
+If you have done well, diReady will be called with the control in parameters
 
+
+## Common usage example
+
+  Control can be provided and receved simulteniously
+  Control can contain several dependencies
+```
+      this.typeName = 'c-control';
+      this.dependencies = ['a-control', 'b-control'];
+      this.diReady = (a, b) => {
+        this.a=a;
+        this.b=b;
+      }
+```
 
 # Localize conversation
 
