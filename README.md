@@ -53,10 +53,6 @@ All you need is in src folder
   2. Add
 ```
       this.typeName = 'control-to-provide';
-      this.dependencies = [];
-      this.diReady = () => {
-        return this;
-      }
 ```
 
 ## Receive Control

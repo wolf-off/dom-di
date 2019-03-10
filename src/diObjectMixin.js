@@ -40,20 +40,27 @@ diObjectMixin = (superClass) => {
     }
 
     onDependenciesReady(...instances) {
-      const instance = this.diReady(...instances);
-      const event = new CustomEvent('dom-di-instance', {
-        detail: {
-          type: this.typeName,
-          instance
-        },
-        bubbles: true,
-        cancelable: true,
-        composed: true
-      });
-      this.dispatchEvent(event);
+      let instance;
+      if (this.diReady && typeof (this.diReady) === "function") {
+        instance = this.diReady(...instances); //Todo check result
+      } else {
+        instance = this;
+      }
+      if (this.typeName) {
+        const event = new CustomEvent('dom-di-instance', {
+          detail: {
+            type: this.typeName,
+            instance
+          },
+          bubbles: true,
+          cancelable: true,
+          composed: true
+        });
+        this.dispatchEvent(event);
+      }
     }
 
-    diSend(data,type){
+    diSend(data, type) {
       const event = new CustomEvent('dom-di-event', {
         detail: {
           type,
@@ -66,7 +73,7 @@ diObjectMixin = (superClass) => {
       this.dispatchEvent(event);
     }
 
-    diSubscribe(callback,type){
+    diSubscribe(callback, type) {
       const event = new CustomEvent('dom-di-subscribe', {
         detail: {
           type,
