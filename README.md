@@ -28,7 +28,9 @@ Add
 
   1. Inherit both your control from `diObjectMixin` (`/src/diObjectMixin.js`)
     
-    `class MyControl extends diContainerMixin(HTMLElement) `
+    ```
+    class MyControl extends diContainerMixin(HTMLElement) 
+    ```
 
     See [Frameworks](# Frameworks) section for framefork's specific information
 
@@ -90,7 +92,7 @@ Add
 
     If your control is some framework's control, realize `dispatchEvent` method to send events to DOM
 
-##AngularJS
+## AngularJS
 ```
 myCtr = function ($element) {
   return new (diObjectMixin(function () {
@@ -106,7 +108,7 @@ myCtr = function ($element) {
 };
 ```
 
-##Angular
+## Angular
 ```
 export class AppComponent extends diObjectMixin(Object) {
 
@@ -123,7 +125,7 @@ export class AppComponent extends diObjectMixin(Object) {
   }
 }
 ```
-##React
+## React
     ..not complited in case of low react knoledge, but it is works for me
 
 ```
@@ -150,6 +152,6 @@ class Hello extends diObjectMixinBabel(React.Component) {
   }    
 }
 ```
-##Vue
+## Vue
     ..not complited in case of low vue knoledge, but it is possible
 
