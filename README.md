@@ -29,9 +29,27 @@ All you need is in src folder
 
     If your control is some framework's control, realize `dispatchEvent` method to send events to DOM
 
+# Send data between controls
+
+  1. Inherit both your control from `diObjectMixin` (`/src/diObjectMixin.js`)
+  2. call diSubscribe to receive data
+```
+    this.diSubscribe((data) => {
+        //use your data
+    });
+```
+  3. call diSend to send data
+
+```
+    this.diSend(2);
+```
+
+# Simple Dependency Injection
+
+
 ## Provide Control
 
-  1. Inherit your control from `diContainerMixin` (`/src/diContainerMixin.js`)
+  1. Inherit your control from `diObjectMixin` (`/src/diObjectMixin.js`)
   2. Add
 ```
       this.typeName = 'control-to-provide';
@@ -42,7 +60,7 @@ All you need is in src folder
 ```
 
 ## Receive Control
-  1. Inherit your control from `diContainerMixin` (`/src/diContainerMixin.js`)
+  1. Inherit your control from `diObjectMixin` (`/src/diObjectMixin.js`)
   2. Add
 ```
       this.dependencies = ['control-to-provide'];
@@ -51,4 +69,4 @@ All you need is in src folder
       }
 ```
 
-  If you have done well, diReady will be called with control, with you want to provide
+  If you have done well, diReady will be called with the control in parameters

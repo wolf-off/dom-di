@@ -11,9 +11,9 @@ diObjectMixin = (superClass) => {
       setTimeout(() => {
         this.onDependenciesRequest();
       }, 200);
-      if (!this.dispatchEvent) {
-        this.dispatchEvent = (event) => this.elRef.nativeElement.dispatchEvent(event);
-      }
+      // if (!this.dispatchEvent) {
+      //   this.dispatchEvent = (event) => this.elRef.nativeElement.dispatchEvent(event);
+      // }
     }
 
     onDependenciesRequest() {
@@ -52,5 +52,32 @@ diObjectMixin = (superClass) => {
       });
       this.dispatchEvent(event);
     }
+
+    diSend(data,type){
+      const event = new CustomEvent('dom-di-event', {
+        detail: {
+          type,
+          data
+        },
+        bubbles: true,
+        cancelable: true,
+        composed: true
+      });
+      this.dispatchEvent(event);
+    }
+
+    diSubscribe(callback,type){
+      const event = new CustomEvent('dom-di-subscribe', {
+        detail: {
+          type,
+          callback
+        },
+        bubbles: true,
+        cancelable: true,
+        composed: true
+      });
+      this.dispatchEvent(event);
+    }
+
   };
 };

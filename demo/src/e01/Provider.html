@@ -1,0 +1,38 @@
+<script>
+  class ServiceAControl extends diObjectMixin(HTMLElement) {
+    constructor() {
+      super();
+
+      this.dependencies = [];
+      this.typeName = 'service-a';
+      this.diReady=()=>{
+        return this;
+      }
+
+      var root = this.attachShadow({ mode: 'open' })
+      root.innerHTML = `
+      <style>
+        :host {
+          display: block;
+          border: solid black 1px;
+          background: aquamarine;
+          margin: 5px;
+        }
+      </style>
+      <div>
+        <div>
+          Provider control
+        </div>
+        <div>
+          <button id='send'>Send 2</button>
+        </div>
+        <slot></slot>
+      </div>`;
+      const that=this;
+      root.getElementById('send').onclick = function () {
+        that.diSend(2);
+      };
+    }
+  }
+  window.customElements.define('service-a-control', ServiceAControl);
+</script>

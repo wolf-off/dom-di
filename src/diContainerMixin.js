@@ -28,6 +28,36 @@ const diContainerMixin = (superClass) => {
       //     }
       //   });
       // }, 3000);
+
+      this.subscribers=[];
+      this.events_unprocessed=[];
+      this.events=[];
+      this.addEventListener('dom-di-subscribe', (event) => {
+        const type = event.detail.type;
+        const callback = event.detail.callback;
+        this.subscribers.push({type,callback});
+        this.events.forEach(e=>{ //switch to unprocessed;
+          if(e.type==type){
+            callback(e.data,e.type);
+          }
+        });
+      });    
+      this.addEventListener('dom-di-event', (inEvent) => {
+        const type = inEvent.detail.type;
+        const data = inEvent.detail.data;
+        const event={type,data};
+        this.events.push(event);
+        var unprocessed=true;
+        this.subscribers.forEach(s=>{
+          if(s.type==type){
+            unprocessed=false;
+            s.callback(data,type);
+          }
+        });
+        if(unprocessed){
+          this.unprocessed.push(event);
+        }
+      });    
     }
   };
 };
