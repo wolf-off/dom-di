@@ -32,7 +32,7 @@ Add
 class MyControl extends diContainerMixin(HTMLElement) 
 ```
 
-See [Frameworks](# Frameworks) section for framefork's specific information
+See [Frameworks](#Frameworks) section for framefork's specific information
 
   2. call diSubscribe to receive data
 ```
