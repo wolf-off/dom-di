@@ -1,3 +1,20 @@
+window.di_global_container = new diContainer();
+
+window.addEventListener('dom-di-request', (event) => {
+  const request = event.detail.request;
+  di_global_container.addRequest(request);
+  event.preventDefault();
+  event.stopPropagation();
+});
+
+window.addEventListener('dom-di-instance', (event) => {
+  const type = event.detail.type;
+  const instance = event.detail.instance;
+  di_global_container.registerInstance(type, instance);
+  event.preventDefault();
+  event.stopPropagation();
+});
+
 const diContainerMixin = (superClass) => {
   return class Provider extends superClass {
 
