@@ -1,7 +1,7 @@
 {
   "name": "dom-di",
-  "version": "0.0.4",
-  "description": "Dependency injection throw DOM",
+  "version": "0.0.7",
+  "description": "Dependency injection via DOM",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

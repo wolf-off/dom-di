@@ -1,0 +1,49 @@
+<h1>DOM-DI Project</h1>
+<p>Site: <a href="http://dom-di.org">http://dom-di.org</a></p>
+<p>NPM: <a href="https://www.npmjs.com/package/dom-di">dom-di</a></p>
+<p>GitHub: <a href="https://github.com/wolf-off/dom-di ">https://github.com/wolf-off/dom-di </a></p>
+<h2>Purpose</h2>
+<p>Target of DOM-DI is support your frontend by low coupling.</p>
+<p>It allow you to implement Interaction and Dependency Injection between your components.</p>
+<p>There are two main dirrection of usage:</p>
+<ul>
+<li>In Web-components</li>
+<li>When you works with differents frameworks in one application (Angulars/React/Vue)</li>
+</ul>
+<p>Anyway It allows you works in Micro Frontend approach</p>
+
+<h2>Install</h2>
+<p>All you need is in src folder Usage Initialize conversation</p>
+<h2>Initialisation</h2>
+<p>There are two way to start conversation between your components:</p>
+<ul>
+<li>Add dom-di-container (/src/Controls/Container.html) to root of your document (or arround).</li>
+<li>Or inherit one control from diContainerMixin (/src/diContainerMixin.js)</li>
+</ul>
+<p>Sure that all partisipants of conversation is childe(may not dirrect) of the control</p>
+<p><em>&nbsp; `class MyControl extends diContainerMixin(HTMLElement) `</em></p>
+<p><em>&nbsp; `class MyControl extends diObjectMixinBabel(React.Component)`</em></p>
+<p><em>&nbsp; `class MyControl extends diObjectMixinBabel({})`</em></p>
+
+<h2>Provide Control</h2>
+<ul>
+<li>Inherit your control from diContainerMixin (/src/diContainerMixin.js)</li>
+<li>Add</li>
+</ul>
+<blockquote>
+<p><em>this.typeName = 'control-to-provide';</em></p>
+<p><em>this.dependencies = [];</em></p>
+<p><em>this.diReady = () =&gt; { return this; }</em></p>
+</blockquote>
+<h2>Receive Control</h2>
+<ul>
+<li>Inherit your control from diContainerMixin (/src/diContainerMixin.js)</li>
+<li>Add</li>
+</ul>
+<blockquote>
+<p><em>this.dependencies = ['control-to-provide']; </em></p>
+<p><em>this.diReady = (control) =&gt; { </em></p>
+<p><em>&nbsp; &nbsp; // add your code </em></p>
+<p><em>} </em></p>
+</blockquote>
+<p>If you have done well, diReady will be called with control, with you want to provide</p>
