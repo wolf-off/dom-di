@@ -1,0 +1,15 @@
+coverage/
+node_modules/
+demo/
+bower_components/
+test/
+~$DOM-DI_short.pptx
+~$DOM-DI.pptx
+DOM-DI.pptx
+DOM-DI_short.pptx
+bower.json
+favicon.ico
+favicon.png
+index.html
+karma.conf.js
+src/diObjectMixinBabel.js

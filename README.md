@@ -1,21 +1,52 @@
-# \<dom-di\>
+# DOM-DI Project
 
+  Site of project:  [dom-di.org](http://www.dom-di.org)
 
+  Target of DOM-DI is support your frontend by low coupling.
+  It allow you to implement Interaction and Dependency Injection between your component
+  There are two main dirrection of usage:
+  1. In Web-components
+  2. When you works with differents frameworks in one apllication (Angulars/React/Vue)
 
-## Install the Polymer-CLI
+  Anyway It allow you works in [Micro Frontend](https://micro-frontends.org/) approach
 
-First, make sure you have the [Polymer CLI](https://www.npmjs.com/package/polymer-cli) installed. Then run `polymer serve` to serve your element locally.
+## Install
 
-## Viewing Your Element
+All you need is in src folder
 
+# Usage
+
+## Initialize conversation
+
+  There are two way to start conversation between your components:
+  1. Add `dom-di-container` (`/src/Controls/Container.html`) to root of your document (or arround).
+  2. Inherit one control from `diContainerMixin` (`/src/diContainerMixin.js`)
+    Sure that all partisipants of conversation is childe (not dirrect) of the control
+
+    `class MyControl extends diContainerMixin(HTMLElement) `
+    `class MyControl extends diObjectMixinBabel(React.Component)`
+    `class MyControl extends diObjectMixinBabel({})`
+
+## Provide Control
+
+  1. Inherit your control from `diContainerMixin` (`/src/diContainerMixin.js`)
+  2. Add
 ```
-$ polymer serve
+      this.typeName = 'control-to-provide';
+      this.dependencies = [];
+      this.diReady = () => {
+        return this;
+      }
 ```
 
-## Running Tests
-
+## Receive Control
+  1. Inherit your control from `diContainerMixin` (`/src/diContainerMixin.js`)
+  2. Add
 ```
-$ polymer test
+      this.dependencies = ['control-to-provide'];
+      this.diReady = (control) => {
+        // add your code
+      }
 ```
 
-Your application is already set up to be tested via [web-component-tester](https://github.com/Polymer/web-component-tester). Run `polymer test` to run your application's test suite locally.
+  If you have done well, diReady will be called with control, with you want to provide
