@@ -1,5 +1,5 @@
 myCtr = function ($element) {
-  var result = diObjectMixin(function AngComponentController() {
+  return new (diObjectMixin(function () {
     this.typeName = 'service-d';
     this.dependencies = ['service-c'];
     this.diReady = (serviceC) => {
@@ -12,8 +12,7 @@ myCtr = function ($element) {
     this.dispatchEvent = (event) => {
       $element[0].dispatchEvent(event);
     }
-  });
-  return new result();
+  }))();
 };
 
 var myApp = angular.module('angApp', []);

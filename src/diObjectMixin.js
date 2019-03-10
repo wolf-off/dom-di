@@ -11,9 +11,9 @@ diObjectMixin = (superClass) => {
       setTimeout(() => {
         this.onDependenciesRequest();
       }, 200);
-      // if (!this.dispatchEvent) {
-      //   this.dispatchEvent = (event) => this.elRef.nativeElement.dispatchEvent(event);
-      // }
+      if (!this.dispatchEvent) {
+        this.dispatchEvent = (event) => this.elRef.nativeElement.dispatchEvent(event);
+      }//Todo delete - angular specific
     }
 
     onDependenciesRequest() {

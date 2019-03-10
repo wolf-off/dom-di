@@ -1,6 +1,6 @@
 {
   "name": "dom-di",
-  "version": "0.0.8",
+  "version": "0.1.1",
   "description": "Dependency injection via DOM",
   "main": "index.js",
   "scripts": {
