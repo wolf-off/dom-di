@@ -3,13 +3,13 @@
   Site of project:  [http://dom-di.org](http://dom-di.org)
 
   NPM :  [dom-di](http://dom-di.org)
-  
+
   GitHub:  [https://github.com/wolf-off/dom-di](https://github.com/wolf-off/dom-di)
 
 ## Purpose
 
   Target of DOM-DI is support your frontend by low coupling.
-  It allow you to implement Interaction and Dependency Injection between your component via DOM
+  It allow you to implement Interaction and Dependency Injection between your component via DOM.
   There are two main dirrection of usage:
   1. In Web-components
   2. When you works with differents frameworks in one application (Angulars/React/Vue)
@@ -24,7 +24,7 @@ npm install dom-di
 All you need is in src folder
 
 Add
-```
+```html
   <script src="../src/diContainer.js"></script>
   <script src="../src/diContainerMixin.js"></script>
   <script src="../src/diObjectMixin.js"></script>
@@ -41,14 +41,14 @@ class MyControl extends diContainerMixin(HTMLElement)
 See [Frameworks](#Frameworks) section for framefork's specific information
 
   2. call diSubscribe to receive data
-```
+```javascript
     this.diSubscribe((data) => {
         //use your data
     });
 ```
   3. call diSend to send data
 
-```
+```javascript
     this.diSend(data);
 ```
 
@@ -59,14 +59,14 @@ See [Frameworks](#Frameworks) section for framefork's specific information
 
   1. Inherit your control from `diObjectMixin` (`/src/diObjectMixin.js`)
   2. Add
-```
+```javascript
       this.typeName = 'control-to-provide';
 ```
 
 ## Receive Control
   1. Inherit your control from `diObjectMixin` (`/src/diObjectMixin.js`)
   2. Add
-```
+```javascript
       this.dependencies = ['control-to-provide'];
       this.diReady = (control) => {
         // add your code
@@ -80,7 +80,7 @@ If you have done well, diReady will be called with the control in parameters
 
   Control can be provided and receved simulteniously.
   Control can contain several dependencies
-```
+```javascript
       this.typeName = 'c-control';
       this.dependencies = ['a-control', 'b-control'];
       this.diReady = (a, b) => {
@@ -112,7 +112,7 @@ If you have done well, diReady will be called with the control in parameters
     If your control is some framework's control, realize `dispatchEvent` method to send events to DOM
 
 ## AngularJS
-```
+```javascript
 myCtr = function ($element) {
   return new (diObjectMixin(function () {
 
@@ -128,7 +128,7 @@ myCtr = function ($element) {
 ```
 
 ## Angular
-```
+```javascript
 export class AppComponent extends diObjectMixin(Object) {
 
   constructor(private elRef: ElementRef) {
@@ -147,7 +147,7 @@ export class AppComponent extends diObjectMixin(Object) {
 ## React
     ..not complited in case of low react knoledge, but it is works for me
 
-```
+```javascript
 class Hello extends diObjectMixinBabel(React.Component) {
     .
     .
